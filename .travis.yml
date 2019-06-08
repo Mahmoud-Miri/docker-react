@@ -8,3 +8,22 @@ before_install:
 
 script:
   - docker run -e CI=true smmiri/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  # region is what you see elastic beanstalk's app url
+  region: "us-west-2"
+  # app name per elastic beanstalk
+  app: "docker-react"
+  # env name per elastic beanstalk
+  env: "DockerReact-env"
+  # bucket name as defined in S3 service. In elastic beanstalk click on services
+  # and search for S3. In there find the name
+  bucket_name: "elasticbeanstalk-us-west-2-606729127377"
+  bucket_path: "docker-react"
+  on:
+    # deploy only when code is pushed to master branch
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
