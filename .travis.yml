@@ -24,6 +24,8 @@ deploy:
   on:
     # deploy only when code is pushed to master branch
     branch: master
+  # name of the env. var. defined on travis-ci that contains the value
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
+    # name of the env. var. defined on travis-ci that contains the value
     secure: "$AWS_SECRET_KEY"
